@@ -7,9 +7,9 @@
         <section id="home_mv">
             <div id="home_slide01">
                 <ul>
-                    <li><a href="#"><img src="<?= imgr(); ?>/home/mv03.jpg" alt=""></a></li>
-                    <li><a href="#"><img src="<?= imgr(); ?>/home/mv01.jpg" alt=""></a></li>
-                    <li><a href="#"><img src="<?= imgr(); ?>/home/mv02.jpg" alt=""></a></li>
+                    <?php foreach (slides() as $post) : setup_postdata($post); ?>
+                        <li><a href="#"><?= eyecatch(); ?></a></li>
+                    <?php endforeach; wp_reset_postdata(); ?>
                 </ul>
             </div><!--home_slide01-->
         </section>
@@ -30,9 +30,9 @@
                     <!--01-->
                     <div id="home_news01_cont01" class="home_news01_cont active">
                         <ul>
-                            <li><span class="date">2022年03月02日</span><a href="#">焼津市４店舗フードドライブ回収結果・12月</a></li>
-                            <li><span class="date">2022年03月02日</span><a href="#">焼津市４店舗フードドライブ回収結果・12月焼津市４店舗フードドライブ回収結果・12月</a></li>
-                            <li><span class="date">2022年03月02日</span><a href="#">焼津市４店舗フードドライブ回収結果・12月</a></li>
+                            <?php foreach (news_lists('all') as $post) : setup_postdata($post); ?>
+                                <li><span class="date"><?= get_the_date('Y年m月d日'); ?></span><a href="<?php the_permalink(); ?>"><?= title(); ?></a></li>
+                            <?php endforeach; wp_reset_postdata(); ?>
                         </ul>
                         <figure class="btn_more"><a href="news01.html"><span></span>一覧を見る</a></figure>
                     </div><!--home_news01_cont-->
@@ -40,9 +40,9 @@
                     <!--02-->
                     <div id="home_news01_cont02" class="home_news01_cont">
                         <ul>
-                            <li><span class="date">2022年03月02日</span><a href="#">ダミーテキストダミーテキスト</a></li>
-                            <li><span class="date">2022年03月02日</span><a href="#">ダミーテキストダミーテキストダミーテキストダミーテキストダミーテキストダミーテキスト</a></li>
-                            <li><span class="date">2022年03月02日</span><a href="#">ダミーテキスト</a></li>
+                            <?php foreach (news_lists('info') as $post) : setup_postdata($post); ?>
+                                <li><span class="date"><?= get_the_date('Y年m月d日'); ?></span><a href="<?php the_permalink(); ?>"><?= title(); ?></a></li>
+                            <?php endforeach; wp_reset_postdata(); ?>
                         </ul>
                         <figure class="btn_more"><a href="news01.html"><span></span>一覧を見る</a></figure>
                     </div><!--home_news02_cont-->
@@ -50,9 +50,9 @@
                     <!--03-->
                     <div id="home_news01_cont03" class="home_news01_cont">
                         <ul>
-                            <li><span class="date">2022年03月02日</span><a href="#">ダミーテキストダミーテキスト</a></li>
-                            <li><span class="date">2022年03月02日</span><a href="#">ダミーテキストダミーテキストダミーテキストダミーテキストダミーテキストダミーテキスト</a></li>
-                            <li><span class="date">2022年03月02日</span><a href="#">ダミーテキスト</a></li>
+                            <?php foreach (news_lists('important') as $post) : setup_postdata($post); ?>
+                                <li><span class="date"><?= get_the_date('Y年m月d日'); ?></span><a href="<?php the_permalink(); ?>"><?= title(); ?></a></li>
+                            <?php endforeach; wp_reset_postdata(); ?>
                         </ul>
                         <figure class="btn_more"><a href="news01.html"><span></span>一覧を見る</a></figure>
                     </div><!--home_news02_cont-->
@@ -60,9 +60,9 @@
                     <!--04-->
                     <div id="home_news01_cont04" class="home_news01_cont">
                         <ul>
-                            <li><span class="date">2022年03月02日</span><a href="#">ダミーテキストダミーテキスト</a></li>
-                            <li><span class="date">2022年03月02日</span><a href="#">ダミーテキストダミーテキストダミーテキストダミーテキストダミーテキストダミーテキスト</a></li>
-                            <li><span class="date">2022年03月02日</span><a href="#">ダミーテキスト</a></li>
+                            <?php foreach (news_lists('paper') as $post) : setup_postdata($post); ?>
+                                <li><span class="date"><?= get_the_date('Y年m月d日'); ?></span><a href="<?php the_permalink(); ?>"><?= title(); ?></a></li>
+                            <?php endforeach; wp_reset_postdata(); ?>
                         </ul>
                         <figure class="btn_more"><a href="news01.html"><span></span>一覧を見る</a></figure>
                     </div><!--home_news02_cont-->
@@ -98,48 +98,19 @@
             </div><!--maincontent-->
             <div id="home_slide02">
                 <ul>
-                    <li><a href="#"><dl>
-                    <dt><img src="<?= imgr(); ?>/home/choice01.jpg" alt=""></dt>
-                    <dd>
-                    <h4>たらばがに一番脚肉100%</h4>
-                    <p>説明文が入ります。説明文が入ります。</p>
-                    </dd>
-                    </dl></a></li>
-                    <li><a href="#"><dl>
-                    <dt><img src="<?= imgr(); ?>/home/choice02.jpg" alt=""></dt>
-                    <dd>
-                    <h4>大福いんげん豆</h4>
-                    <p>説明文が入ります。説明文が入ります。</p>
-                    </dd>
-                    </dl></a></li>
-                    <li><a href="#"><dl>
-                    <dt><img src="<?= imgr(); ?>/home/choice03.jpg" alt=""></dt>
-                    <dd>
-                    <h4>オリジナル珈琲</h4>
-                    <p>説明文が入ります。説明文が入ります。</p>
-                    </dd>
-                    </dl></a></li>
-                    <li><a href="#"><dl>
-                    <dt><img src="<?= imgr(); ?>/home/choice01.jpg" alt=""></dt>
-                    <dd>
-                    <h4>たらばがに一番脚肉100%</h4>
-                    <p>説明文が入ります。説明文が入ります。</p>
-                    </dd>
-                    </dl></a></li>
-                    <li><a href="#"><dl>
-                    <dt><img src="<?= imgr(); ?>/home/choice02.jpg" alt=""></dt>
-                    <dd>
-                    <h4>大福いんげん豆</h4>
-                    <p>説明文が入ります。説明文が入ります。</p>
-                    </dd>
-                    </dl></a></li>
-                    <li><a href="#"><dl>
-                    <dt><img src="<?= imgr(); ?>/home/choice03.jpg" alt=""></dt>
-                    <dd>
-                    <h4>オリジナル珈琲</h4>
-                    <p>説明文が入ります。説明文が入ります。</p>
-                    </dd>
-                    </dl></a></li>
+                    <?php foreach (bargain_lists() as $post) : setup_postdata($post); ?>
+                    <li>
+                        <a href="<?php the_permalink(); ?>">
+                            <dl>
+                                <dt><?= eyecatch(); ?></dt>
+                                <dd>
+                                    <h4><?= title(); ?></h4>
+                                    <p><?php the_content(); ?></p>
+                                </dd>
+                            </dl>
+                            </a>
+                        </li>
+                    <?php endforeach; wp_reset_postdata(); ?>
                 </ul>
             </div><!--home_slide02-->
             <div class="maincontent">
@@ -151,14 +122,9 @@
             <div class="maincontent">
                 <h2><strong>Shop</strong><span>店舗</span></h2>
                 <ul>
-                    <li><a href="#">東名店</a></li>
-                    <li><a href="#">⽥尻北店</a></li>
-                    <li><a href="#">焼津南店</a></li>
-                    <li><a href="#">焼津三丁⽬店</a></li>
-                    <li><a href="#">藤枝五⼗海店</a></li>
-                    <li><a href="#">⾼洲店</a></li>
-                    <li><a href="#">中田店</a></li>
-                    <li><a href="#">瀬名店</a></li>
+                    <?php foreach (shop_name_lists() as $post) : setup_postdata($post); ?>
+                        <li><a href="#<?= $post->post_name; ?>"><?= title(); ?></a></li>
+                    <?php endforeach; wp_reset_postdata(); ?>
                 </ul>
             </div><!--maincontent-->
         </section>
@@ -166,13 +132,9 @@
         <section id="home_ban">
             <div class="maincontent">
                 <ul>
-                    <li><a href="cogca.html"><img src="<?= imgr(); ?>/home/ban01.jpg" alt="コジカカード"></a></li>
-                    <li><a href="recruit.html"><img src="<?= imgr(); ?>/home/ban02.jpg" alt="採用情報"></a></li>
-                    <li><a href="https://www.chikuya.co.jp/"><img src="<?= imgr(); ?>/home/ban03.jpg" alt="知久屋"></a></li>
-                    <li><a href="https://ichifuji0188.com/flyer.html"><img src="<?= imgr(); ?>/home/ban04.jpg" alt="やっちゃばだより"></a></li>
-                    <li><a href="https://www.cgcjapan.co.jp/fureai/"><img src="<?= imgr(); ?>/home/ban05.jpg" alt="ふれ愛交差点"></a></li>
-                    <li><a href="https://ichimaruhoming.jp/"><img src="<?= imgr(); ?>/home/ban06.jpg" alt="いちまるホーミング"></a></li>
-                    <li><a href="pdf/myshop.pdf" target="_blank"><img src="<?= imgr(); ?>/home/ban07.jpg" alt=""></a></li>
+                    <?php foreach (banner_lists() as $post) : setup_postdata($post); ?>
+                        <li><a href=""><?= eyecatch(); ?></a></li>
+                    <?php endforeach; wp_reset_postdata(); ?>
                 </ul>
             </div><!--maincontent-->
         </section>

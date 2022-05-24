@@ -1,4 +1,283 @@
 <?php
+// 追加function
+add_filter('show_admin_bar', '__return_false');
+remove_filter('the_content', 'wpautop');
+// ルート簡略化
+function imgr() {
+    return esc_url( get_template_directory_uri().'/assets/images' );
+}
+function jsr() {
+    return esc_url( get_template_directory_uri().'/assets/js' );
+}
+function cssr() {
+    return esc_url( get_template_directory_uri().'/assets/css' );
+}
+function pdfr() {
+    return esc_url( get_template_directory_uri().'/assets/pdf' );
+}
+function title() {
+    return the_title();
+}
+function eyecatch() {
+    return the_post_thumbnail('full');
+}
+// ルーティング
+// home
+function home() {
+	return esc_url( home_url() );
+}
+// 富士屋のこだわり
+function about() {
+	return esc_url( home_url().'/about' );
+}
+// 会社案内
+function company() {
+	return esc_url( home_url().'/company' );
+}
+// 店舗・チラシ情報
+function shoplist() {
+	return esc_url( home_url().'/shoplist' );
+}
+// 採用情報
+function recruit() {
+	return esc_url( home_url().'/recruit' );
+}
+// 親ページ
+function is_parent_slug() {
+    global $post;
+    if ($post->post_parent) {
+        $post_data = get_post($post->post_parent);
+        return $post_data->post_name;
+    }
+}
+
+// 投稿名称変更
+function Change_menulabel() {
+	global $menu;
+	global $submenu;
+	$name = '新着情報';
+	$menu[5][0] = $name;
+	$submenu['edit.php'][5][0] = $name.'一覧';
+	$submenu['edit.php'][10][0] = '新しい'.$name;
+}
+function Change_objectlabel() {
+	global $wp_post_types;
+	$name = '新着情報';
+	$labels = &$wp_post_types['post']->labels;
+	$labels->name = $name;
+	$labels->singular_name = $name;
+	$labels->add_new = _x('追加', $name);
+	$labels->add_new_item = $name.'の新規追加';
+	$labels->edit_item = $name.'の編集';
+	$labels->new_item = '新規'.$name;
+	$labels->view_item = $name.'を表示';
+	$labels->search_items = $name.'を検索';
+	$labels->not_found = $name.'が見つかりませんでした';
+	$labels->not_found_in_trash = 'ゴミ箱に'.$name.'は見つかりませんでした';
+}
+add_action( 'init', 'Change_objectlabel' );
+add_action( 'admin_menu', 'Change_menulabel' );
+
+// カスタム投稿
+// お買い得情報
+add_action( 'init', 'custom_post_type' );
+function custom_post_type() {
+	register_post_type( 'slide',
+		array(
+				'labels' => array(
+				'name' => __( 'スライド' ),
+				'singular_name' => __( 'スライド' ),
+				'add_new' => _x('新規追加', 'スライド'),
+				'add_new_item' => __('新規追加'),
+			),
+			'public' => true,
+			'has_archive' => true,
+			'hierarchical' => false,
+			'menu_position' =>5,
+			'menu_icon' => 'dashicons-edit',
+			'supports' => array('title','editor','thumbnail','revisions'),
+		)
+	);
+	register_post_type( 'bargain',
+		array(
+				'labels' => array(
+				'name' => __( 'お買得情報' ),
+				'singular_name' => __( 'お買得情報' ),
+				'add_new' => _x('新規追加', 'お買得情報'),
+				'add_new_item' => __('新規追加'),
+			),
+			'public' => true,
+			'has_archive' => true,
+			'hierarchical' => false,
+			'menu_position' =>5,
+			'menu_icon' => 'dashicons-edit',
+			'supports' => array('title','editor','thumbnail','revisions'),
+		)
+	);
+	register_post_type( 'banner',
+		array(
+				'labels' => array(
+				'name' => __( 'バナー' ),
+				'singular_name' => __( 'バナー' ),
+				'add_new' => _x('新規追加', 'バナー'),
+				'add_new_item' => __('新規追加'),
+			),
+			'public' => true,
+			'has_archive' => true,
+			'hierarchical' => false,
+			'menu_position' =>5,
+			'menu_icon' => 'dashicons-edit',
+			'supports' => array('title','editor','thumbnail','revisions'),
+		)
+	);
+	register_post_type( 'shops',
+		array(
+				'labels' => array(
+				'name' => __( '店舗' ),
+				'singular_name' => __( '店舗' ),
+				'add_new' => _x('新規追加', '店舗'),
+				'add_new_item' => __('新規追加'),
+			),
+			'public' => true,
+			'has_archive' => true,
+			'hierarchical' => false,
+			'menu_position' =>5,
+			'menu_icon' => 'dashicons-edit',
+			'supports' => array('title','editor','thumbnail','revisions'),
+		)
+	);
+	register_post_type( 'enkaku',
+		array(
+				'labels' => array(
+				'name' => __( '沿革' ),
+				'singular_name' => __( '沿革' ),
+				'add_new' => _x('新規追加', '沿革'),
+				'add_new_item' => __('新規追加'),
+			),
+			'public' => true,
+			'has_archive' => true,
+			'hierarchical' => false,
+			'menu_position' =>5,
+			'menu_icon' => 'dashicons-edit',
+			'supports' => array('title','editor','thumbnail','revisions'),
+		)
+	);
+}
+
+// タクソノミー
+function add_taxonomy() {
+	register_taxonomy(
+		'shops_category',
+		'shops',
+		array(
+			'hierarchical' => true,
+			'label' => 'カテゴリー',
+			'singular_label' => 'カテゴリー',
+			'public' => true,
+			'show_ui' => true,
+		)
+	);
+}
+add_action( 'init', 'add_taxonomy' );
+
+// スライドショー
+function slides() {
+	$args = array(
+		'posts_per_page' => -1,
+		'post_type' => 'slide',
+		'orderby' => 'date',
+		'order' => 'DESC',
+	);
+	return get_posts($args);
+}
+
+// 新着情報
+function news_lists($cat) {
+	if($cat == 'all') {
+		$cat = '';
+	}
+	$args = array(
+		'posts_per_page' => 500,
+		'post_type' => 'post',
+		'orderby' => 'date',
+		'order' => 'DESC',
+		'category_name' => $cat,
+	);
+	return get_posts($args);
+}
+
+// お買い得情報
+function bargain_lists() {
+	$args = array(
+		'posts_per_page' => 5,
+		'post_type' => 'bargain',
+		'orderby' => 'date',
+		'order' => 'DESC',
+	);
+	return get_posts($args);
+}
+
+// 店舗一覧
+function shop_name_lists() {
+	$args = array(
+		'posts_per_page' => -1,
+		'post_type' => 'shops',
+		'orderby' => 'date',
+		'order' => 'DESC',
+	);
+	return get_posts($args);
+}
+
+// バナー一覧
+function banner_lists() {
+	$args = array(
+		'posts_per_page' => -1,
+		'post_type' => 'banner',
+		'orderby' => 'date',
+		'order' => 'DESC',
+	);
+	return get_posts($args);
+}
+
+// 沿革
+function enkakus() {
+	$args = array(
+		'posts_per_page' => -1,
+		'post_type' => 'enkaku',
+		'orderby' => 'date',
+		'order' => 'ASC',
+	);
+	return get_posts($args);
+}
+
+// 店舗情報
+function shop_lists($cat) {
+	$args = array(
+		'posts_per_page' => -1,
+		'post_type' => array('shops'),
+		'orderby' => 'date',
+		'order' => 'DESC',
+		'tax_query' => array(
+			array(
+				'taxonomy' => 'shops_category',
+				'field' => 'slug',
+				'terms' => $cat,
+			),
+		),
+	);
+	return get_posts($args);
+}
+
+
+
+
+
+
+
+
+
+
+
 
 if ( ! function_exists( 'twentynineteen_setup' ) ) :
 	/**
@@ -280,127 +559,3 @@ require get_template_directory() . '/inc/customizer.php';
  * Block Patterns.
  */
 require get_template_directory() . '/inc/block-patterns.php';
-
-// 追加function
-add_filter('show_admin_bar', '__return_false');
-// assetsルート
-function imgr() {
-    return esc_url( get_template_directory_uri().'/assets/images' );
-}
-function jsr() {
-    return esc_url( get_template_directory_uri().'/assets/js' );
-}
-function cssr() {
-    return esc_url( get_template_directory_uri().'/assets/css' );
-}
-function pdfr() {
-    return esc_url( get_template_directory_uri().'/assets/pdf' );
-}
-// ルーティング
-// home
-function home() {
-	return esc_url( home_url() );
-}
-// 親ページ
-function is_parent_slug() {
-    global $post;
-    if ($post->post_parent) {
-        $post_data = get_post($post->post_parent);
-        return $post_data->post_name;
-    }
-}
-
-// カスタム投稿
-add_action( 'init', 'custom_post_type' );
-function custom_post_type() {
-	register_post_type( 'gallery',
-		array(
-				'labels' => array(
-				'name' => __( 'GELLERY' ),
-				'singular_name' => __( 'GELLERY' ),
-				'add_new' => _x('新規追加', 'gallery'),
-				'add_new_item' => __('新規追加'),
-			),
-			'public' => true,
-			'has_archive' => true,
-			'hierarchical' => false,
-			'menu_position' =>5,
-			'menu_icon' => 'dashicons-edit',
-			'supports' => array('title','editor','thumbnail','revisions'),
-		)
-	);
-	register_post_type( 'book',
-		array(
-				'labels' => array(
-				'name' => __( 'BOOK' ),
-				'singular_name' => __( 'BOOK' ),
-				'add_new' => _x('新規追加', 'book'),
-				'add_new_item' => __('新規追加'),
-			),
-			'public' => true,
-			'has_archive' => true,
-			'hierarchical' => false,
-			'menu_position' =>5,
-			'menu_icon' => 'dashicons-edit',
-			'supports' => array('title','editor','thumbnail','revisions'),
-		)
-	);
-}
-
-// タクソノミー
-function add_taxonomy() {
-	register_taxonomy(
-		'gallery_category',
-		'gallery',
-		array(
-			'hierarchical' => true,
-			'label' => 'GALLERY種別',
-			'singular_label' => 'GALLERY種別',
-			'public' => true,
-			'show_ui' => true,
-		)
-	);
-	register_taxonomy(
-		'book_category',
-		'book',
-		array(
-			'hierarchical' => true,
-			'label' => 'BOOK種別',
-			'singular_label' => 'BOOK種別',
-			'public' => true,
-			'show_ui' => true,
-		)
-	);
-}
-add_action( 'init', 'add_taxonomy' );
-
-// 投稿
-function gallery_lists() {
-	$args = array(
-		'posts_per_page' => 500,
-		'post_type' => array('gallery'),
-		'orderby' => 'date',
-		'order' => 'DESC',
-		// 'tax_query' => array(
-		// 	array(
-		// 		'taxonomy' => 'gallery_category',
-		// 		'field' => 'slug',
-		// 		'terms' => '',
-		// 	),
-		// ),
-	);
-	$gallery_lists = get_posts($args);
-	return $gallery_lists;
-}
-
-remove_filter('the_content', 'wpautop');
-
-
-
-
-
-
-
-
-
-
