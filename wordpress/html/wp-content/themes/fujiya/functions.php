@@ -1,21 +1,4 @@
 <?php
-/**
- * Twenty Nineteen functions and definitions
- *
- * @link https://developer.wordpress.org/themes/basics/theme-functions/
- *
- * @package WordPress
- * @subpackage Twenty_Nineteen
- * @since Twenty Nineteen 1.0
- */
-
-/**
- * Twenty Nineteen only works in WordPress 4.7 or later.
- */
-if ( version_compare( $GLOBALS['wp_version'], '4.7', '<' ) ) {
-	require get_template_directory() . '/inc/back-compat.php';
-	return;
-}
 
 if ( ! function_exists( 'twentynineteen_setup' ) ) :
 	/**
@@ -244,45 +227,6 @@ function twentynineteen_content_width() {
 add_action( 'after_setup_theme', 'twentynineteen_content_width', 0 );
 
 /**
- * Enqueue scripts and styles.
- */
-function twentynineteen_scripts() {
-	wp_enqueue_style( 'twentynineteen-style', get_stylesheet_uri(), array(), wp_get_theme()->get( 'Version' ) );
-
-	wp_style_add_data( 'twentynineteen-style', 'rtl', 'replace' );
-
-	if ( has_nav_menu( 'menu-1' ) ) {
-		wp_enqueue_script( 'twentynineteen-priority-menu', get_theme_file_uri( '/js/priority-menu.js' ), array(), '20181214', true );
-		wp_enqueue_script( 'twentynineteen-touch-navigation', get_theme_file_uri( '/js/touch-keyboard-navigation.js' ), array(), '20181231', true );
-	}
-
-	wp_enqueue_style( 'twentynineteen-print-style', get_template_directory_uri() . '/print.css', array(), wp_get_theme()->get( 'Version' ), 'print' );
-
-	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
-		wp_enqueue_script( 'comment-reply' );
-	}
-}
-add_action( 'wp_enqueue_scripts', 'twentynineteen_scripts' );
-
-/**
- * Fix skip link focus in IE11.
- *
- * This does not enqueue the script because it is tiny and because it is only for IE11,
- * thus it does not warrant having an entire dedicated blocking script being loaded.
- *
- * @link https://git.io/vWdr2
- */
-function twentynineteen_skip_link_focus_fix() {
-	// The following is minified via `terser --compress --mangle -- js/skip-link-focus-fix.js`.
-	?>
-	<script>
-	/(trident|msie)/i.test(navigator.userAgent)&&document.getElementById&&window.addEventListener&&window.addEventListener("hashchange",function(){var t,e=location.hash.substring(1);/^[A-z0-9_-]+$/.test(e)&&(t=document.getElementById(e))&&(/^(?:a|select|input|button|textarea)$/i.test(t.tagName)||(t.tabIndex=-1),t.focus())},!1);
-	</script>
-	<?php
-}
-add_action( 'wp_print_footer_scripts', 'twentynineteen_skip_link_focus_fix' );
-
-/**
  * Enqueue supplemental block editor styles.
  */
 function twentynineteen_editor_customizer_styles() {
@@ -296,31 +240,6 @@ function twentynineteen_editor_customizer_styles() {
 	}
 }
 add_action( 'enqueue_block_editor_assets', 'twentynineteen_editor_customizer_styles' );
-
-/**
- * Display custom color CSS in customizer and on frontend.
- */
-function twentynineteen_colors_css_wrap() {
-
-	// Only include custom colors in customizer or frontend.
-	if ( ( ! is_customize_preview() && 'default' === get_theme_mod( 'primary_color', 'default' ) ) || is_admin() ) {
-		return;
-	}
-
-	require_once get_parent_theme_file_path( '/inc/color-patterns.php' );
-
-	$primary_color = 199;
-	if ( 'default' !== get_theme_mod( 'primary_color', 'default' ) ) {
-		$primary_color = get_theme_mod( 'primary_color_hue', 199 );
-	}
-	?>
-
-	<style type="text/css" id="custom-theme-colors" <?php echo is_customize_preview() ? 'data-hue="' . absint( $primary_color ) . '"' : ''; ?>>
-		<?php echo twentynineteen_custom_colors_css(); ?>
-	</style>
-	<?php
-}
-add_action( 'wp_head', 'twentynineteen_colors_css_wrap' );
 
 /**
  * SVG Icons class.
@@ -363,97 +282,24 @@ require get_template_directory() . '/inc/customizer.php';
 require get_template_directory() . '/inc/block-patterns.php';
 
 // 追加function
-// ページネーション
-function add_prev_post_link_class($output) {
-	return str_replace('<a href=', '<a class="btn-pager-prev" href=', $output);
-}
-add_filter( 'previous_post_link', 'add_prev_post_link_class' );
-function add_next_post_link_class($output) {
-	return str_replace('<a href=', '<a class="btn-pager-next" href=', $output);
-}
-add_filter( 'next_post_link', 'add_next_post_link_class' );
-// ディレクトリショートコード
-add_shortcode('uri', 'shortcode_tp');
-function shortcode_tp() {
-	return get_template_directory_uri();
-}
-// ajax zip3
-function enq_ajaxzip3() {
-	wp_enqueue_script( 'ajaxzip3-script', 'https://ajaxzip3.github.io/ajaxzip3.js', array(), false, true );
-}
-add_action( 'wp_enqueue_scripts', 'enq_ajaxzip3' );
-
-// assetsルート簡略化
+add_filter('show_admin_bar', '__return_false');
+// assetsルート
 function imgr() {
-    return esc_url( home_url().'/assets/img' );
+    return esc_url( get_template_directory_uri().'/assets/images' );
 }
 function jsr() {
-    return esc_url( home_url().'/assets/js' );
+    return esc_url( get_template_directory_uri().'/assets/js' );
 }
 function cssr() {
-    return esc_url( home_url().'/assets/css' );
+    return esc_url( get_template_directory_uri().'/assets/css' );
 }
-function gallery_imgr() {
-    return esc_url( home_url().'/assets/img/gallery' );
-}
-function movie_imgr() {
-    return esc_url( home_url().'/assets/img/movie' );
-}
-function book_imgr() {
-    return esc_url( home_url().'/assets/img/book' );
+function pdfr() {
+    return esc_url( get_template_directory_uri().'/assets/pdf' );
 }
 // ルーティング
 // home
 function home() {
 	return esc_url( home_url() );
-}
-// GALLERY
-function gallery() {
-	return esc_url( home_url().'/gallery' );
-}
-// GALLERY A PETRIFIED FOREST
-function gallery_forest() {
-	return esc_url( home_url().'/gallery/a_petrified_forest' );
-}
-// GALLERY HUMAN NATURE
-function gallery_human_nature() {
-	return esc_url( home_url().'/gallery/human_nature' );
-}
-// GALLERY HORROR DOLLS
-function gallery_horror_dolls() {
-	return esc_url( home_url().'/gallery/horror_dolls' );
-}
-// GALLERY GENKI
-function gallery_genki() {
-	return esc_url( home_url().'/gallery/genki' );
-}
-// MOVIE
-function movie() {
-	return esc_url( home_url().'/movie' );
-}
-// BOOK
-function book() {
-	return esc_url( home_url().'/book' );
-}
-// BOOK A PETRIFIED FOREST
-function book_forest() {
-	return esc_url( home_url().'/book/a_petrified_forest' );
-}
-// BOOK HUMAN NATURE
-function book_human_nature() {
-	return esc_url( home_url().'/book/human_nature' );
-}
-// BOOK HORROR DOLLS
-function book_horror_dolls() {
-	return esc_url( home_url().'/book/horror_dolls' );
-}
-// BOOK GENKI
-function book_genki() {
-	return esc_url( home_url().'/book/genki' );
-}
-// ABOUT
-function about() {
-	return esc_url( home_url().'/about' );
 }
 // 親ページ
 function is_parent_slug() {
@@ -464,7 +310,7 @@ function is_parent_slug() {
     }
 }
 
-// GELLERY
+// カスタム投稿
 add_action( 'init', 'custom_post_type' );
 function custom_post_type() {
 	register_post_type( 'gallery',
@@ -473,22 +319,6 @@ function custom_post_type() {
 				'name' => __( 'GELLERY' ),
 				'singular_name' => __( 'GELLERY' ),
 				'add_new' => _x('新規追加', 'gallery'),
-				'add_new_item' => __('新規追加'),
-			),
-			'public' => true,
-			'has_archive' => true,
-			'hierarchical' => false,
-			'menu_position' =>5,
-			'menu_icon' => 'dashicons-edit',
-			'supports' => array('title','editor','thumbnail','revisions'),
-		)
-	);
-	register_post_type( 'movie',
-		array(
-				'labels' => array(
-				'name' => __( 'MOVIE' ),
-				'singular_name' => __( 'MOVIE' ),
-				'add_new' => _x('新規追加', 'movie'),
 				'add_new_item' => __('新規追加'),
 			),
 			'public' => true,
@@ -531,17 +361,6 @@ function add_taxonomy() {
 		)
 	);
 	register_taxonomy(
-		'movie_category',
-		'movie',
-		array(
-			'hierarchical' => true,
-			'label' => 'MOVIE種別',
-			'singular_label' => 'MOVIE種別',
-			'public' => true,
-			'show_ui' => true,
-		)
-	);
-	register_taxonomy(
 		'book_category',
 		'book',
 		array(
@@ -555,7 +374,7 @@ function add_taxonomy() {
 }
 add_action( 'init', 'add_taxonomy' );
 
-// 準備中
+// 投稿
 function gallery_lists() {
 	$args = array(
 		'posts_per_page' => 500,

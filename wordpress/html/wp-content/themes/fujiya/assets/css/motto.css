@@ -1,0 +1,95 @@
+@charset "utf-8";
+.motto #content{ margin-top: 20px;}
+@media screen and (max-width:767px){
+.motto #content{ margin-top:2.5%;}
+}
+
+.motto section{ padding: 60px 0;}
+@media screen and (max-width:767px){
+.motto section{ padding:10% 0;}
+}
+
+
+/*mv*/
+.motto #mv{ display: flex; align-items: center; justify-content: center; background: url("../images/motto/mv_bg.jpg") center center no-repeat; background-size: cover; height: 185px;}
+.motto #mv h1{ text-align: center; font-size: 32px; color: #fff;}
+@media screen and (max-width:767px){
+.motto #mv{ height:33.33vw;}
+.motto #mv h1{ font-size:6vw;}
+}
+
+
+/*nav*/
+.motto #motto_nav{ text-align: center; margin: 90px auto 0;}
+.motto #motto_nav ul{ display: flex; align-items: center; justify-content: center;}
+.motto #motto_nav ul li{ width: 300px; margin: 0 10px;}
+.motto #motto_nav ul li a{ display: flex; align-items: center; justify-content: center; width: 100%; height: 60px; border: 2px solid #D1111B; color: #D1111B; font-size: 22px; font-weight: bold; border-radius: 30px; transition: 0.3s;}
+.motto #motto_nav ul li a:hover{ background: #D1111B; color: #fff;}
+@media screen and (max-width:767px){
+.motto #motto_nav{ margin:10% 2.5% 0;}
+.motto #motto_nav ul li{ width:calc(33.33% - 2.5vw); margin:0 1.25vw;}
+.motto #motto_nav ul li a{ height:12vw; font-size:3vw; line-height: 1.25em; border-radius:6vw;}
+}
+
+
+/*tit*/
+.motto h2{ background: #D1111B; color: #fff; text-align: center; font-size: 32px; padding: 0.5em; border-radius: 12px; margin-bottom: 60px;}
+.motto h3{ text-align: center; font-size: 22px; color: #D1111B;}
+.motto h4{ margin: 60px auto 40px; font-size: 22px; color: #D1111B; padding-bottom: 0.5em; border-bottom: 3px solid #D1111B;}
+@media screen and (max-width:767px){
+.motto h2{ font-size:5vw; border-radius:1.25vw; margin-bottom:5%;}
+.motto h3{ font-size:4.5vw;}
+.motto h4{ margin:7.5% auto 5%; font-size:4.5vw;}
+}
+
+
+/*cont*/
+.motto_content{ width: 980px; margin: 0 auto;}
+.motto p{ font-size: 16px;}
+@media screen and (max-width:767px){
+.motto_content{ width:100%;}
+.motto p{ font-size:3vw;}
+}
+
+
+/*motto01*/
+#motto01 figure{ margin: 60px auto;}
+@media screen and (max-width:767px){
+#motto01 figure{ margin:7.5% auto;}
+#motto01 figure img{ width:50%;}
+}
+
+
+/*motto02*/
+#motto02 dl{ display: flex; width: 100%; color: #4D4D4D;}
+#motto02 dl dt{ width: calc(100% - 380px); margin-right: 20px;}
+#motto02 dl dd{ width: 360px;}
+#motto02 #motto02_box{ margin-top: 60px; border: 1px solid #D1111B; border-radius: 20px; padding: 40px 60px; color: #4D4D4D;}
+#motto02 #motto02_box h5{ font-size: 22px; color: #D1111B; margin-bottom: 30px;}
+#motto02 #motto02_box ul{ font-size: 14px;}
+#motto02 #motto02_box ul li{ padding-left: 1.25em; position: relative;}
+#motto02 #motto02_box ul li:before{ content: "※"; position: absolute; left: 0; top: 0;}
+@media screen and (max-width:767px){
+#motto02 dl{ flex-direction:column-reverse;}
+#motto02 dl dt{ width:100%; margin:5% auto 0;}
+#motto02 dl dd{ width:100%; text-align:center;}
+#motto02 dl dd img{ width:66.66%;}
+#motto02 #motto02_box{ margin-top:7.5%; border-radius:2.5vw; padding:5%;}
+#motto02 #motto02_box h5{ font-size:4vw; margin-bottom:5%;}
+#motto02 #motto02_box ul{ font-size:2.5vw;}
+}
+
+
+/*motto03*/
+#motto03 dl{ display: flex; width: 100%; color: #4D4D4D;}
+#motto03 dl dt{ width: calc(100% - 380px); margin-right: 20px;}
+#motto03 dl dd{ width: 360px;}
+#motto03 dl dt h5{ font-size: 16px; line-height: 1.5em; margin-bottom: 1.5em;}
+@media screen and (max-width:767px){
+#motto03 dl{ flex-direction:column-reverse;}
+#motto03 dl dt{ width:100%; margin:5% auto 0;}
+#motto03 dl dd{ width:100%; text-align:center;}
+#motto03 dl dd img{ width:66.66%;}
+#motto03 dl dt h5{ font-size:3vw;}
+}
+

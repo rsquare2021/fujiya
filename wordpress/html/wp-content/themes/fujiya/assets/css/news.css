@@ -1,0 +1,87 @@
+@charset "utf-8";
+.news #content{ margin-top: 20px;}
+@media screen and (max-width:767px){
+.news #content{ margin-top:2.5%;}
+}
+
+.news section{ padding: 60px 0;}
+@media screen and (max-width:767px){
+.news section{ padding:10% 0;}
+}
+
+
+/*mv*/
+.news #mv{ display: flex; align-items: center; justify-content: center; background: url("../images/news/mv_bg.jpg") center center no-repeat; background-size: cover; height: 185px;}
+.news #mv h1{ text-align: center; font-size: 32px; color: #fff;}
+@media screen and (max-width:767px){
+.news #mv{ height:33.33vw;}
+.news #mv h1{ font-size:6vw;}
+}
+
+
+/*pankuzu*/
+#pankuzu{ width: 1080px; margin: 20px auto 0;}
+#pankuzu ul{ letter-spacing: -1em;}
+#pankuzu ul li{ display: inline-block; vertical-align: middle; letter-spacing: 0; font-size: 16px;}
+#pankuzu ul li:not(:last-child):after{ content: ">"; margin: 0 0.5em;}
+#pankuzu ul li a:hover{ text-decoration: underline;}
+@media screen and (max-width:767px){
+#pankuzu{ width:90%; margin:2.5% auto 0;}
+#pankuzu ul li{ font-size:2.5vw;}
+}
+
+
+/*news01*/
+.news #news01_tab{ text-align: center; margin: 0 auto;}
+.news #news01_tab ul{ display: flex; align-items: center; justify-content: center;}
+.news #news01_tab ul li{ width: 250px; height: 60px; margin: 0 10px; display: flex; align-items: center; justify-content: center; border: 2px solid #D1111B; color: #D1111B; font-size: 22px; font-weight: bold; border-radius: 30px; transition: 0.3s; cursor: pointer;}
+.news #news01_tab ul li:hover,
+.news #news01_tab ul li.active{ background: #D1111B; color: #fff;}
+@media screen and (max-width:767px){
+.news #news01_tab ul{ flex-wrap: wrap; width: calc(100% + 2.5vw); margin: -1.25vw 0 -1.25vw -1.25vw}
+.news #news01_tab ul li{ width:calc(50% - 2.5vw); margin:1.25vw; height:12vw; font-size:3.5vw; line-height: 1.25em; border-radius:6vw;}
+}
+
+.news .news01_cont{ display: none; margin: 60px auto 0;}
+.news .news01_cont.active{ display: block;}
+.news .news01_cont ul li{ padding: 1em 1.5em; background: #fff; font-size: 16px;}
+.news .news01_cont ul li:nth-child(2n){ background: #FFFDF5;}
+.news .news01_cont ul li span.date{ display: block; font-weight: bold; margin-bottom: 0.25em;}
+.news .news01_cont ul li a{ text-decoration: underline;}
+.news .news01_cont ul li a:hover{ text-decoration: none;}
+@media screen and (max-width:767px){
+.news .news01_cont{ margin:7.5% auto 0;}
+.news .news01_cont ul li{ font-size:3vw;}
+}
+
+
+/*news02*/
+#news02 h2{ font-size: 22px; padding: 0.5em; border-bottom: 1px solid #D1111B; margin-bottom: 40px;}
+#news02 h2 span.date{ display: block;}
+#news02 .news02_content{ margin: 20px;}
+#news02 .news02_content .flyer{ margin: 40px auto;}
+#news02 .news02_content .flyer a{ transition: 0.3s;}
+#news02 .news02_content .flyer a:hover{ opacity: 0.7;}
+#news02 .news02_content .flyer ul{ display: flex; flex-wrap: wrap;}
+#news02 .news02_content .flyer ul li{width: calc(33.33% - 40px); margin: 0 20px;}
+#news02 .news02_content .flyer ul li img{ width: 100%;}
+#news02 .news02_content .flyer ul li p{ line-height: 1.5em; margin-top: 0.5em; text-align: center;}
+#news02 .news02_content h3{ font-size: 22px; border-left: 6px solid #D1111B; padding-left: 10px; margin: 40px auto 0;}
+#news02 .news02_content p{ margin: 1em; font-size: 16px;}
+@media screen and (max-width:767px){
+#news02 h2{ font-size:4.5vw; margin-bottom:5%;}
+#news02 .news02_content{ margin:0;}
+#news02 .news02_content .flyer{ margin:5% auto;}
+#news02 .news02_content .flyer ul li{width:calc(50% - 2.5vw); margin:1.25vw;}
+#news02 .news02_content .flyer ul li p{ font-size:3vw;}
+#news02 .news02_content h3{ font-size:4.5vw; border-left:1vw solid #D1111B; padding-left:1.5vw; margin:7.5% auto 0;}
+#news02 .news02_content p{ margin:2.5vw; font-size:3vw;}
+}
+
+#news02 .back{ border-top: 1px solid #000; margin-top: 60px; padding-top: 40px;}
+#news02 figure.btn a{ display: flex; align-items: center; justify-content: center; margin: 0 auto; width: 250px; height: 60px; background: #D1111B; color: #fff; font-size: 22px; line-height: 1em; font-weight: bold; border-radius: 30px; transition: 0.3s;}
+#news02 figure.btn a:hover{ opacity: 0.7;}
+@media screen and (max-width:767px){
+#news02 .back{ margin-top:7.5%; padding-top:5%;}
+#news02 figure.btn a{ width:66.66%; height:12vw; font-size:4.5vw; border-radius:6vw;}
+}

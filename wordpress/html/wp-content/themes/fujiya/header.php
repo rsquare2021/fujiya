@@ -4,14 +4,52 @@
 	<meta charset="<?php bloginfo( 'charset' ); ?>" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	<link rel="profile" href="https://gmpg.org/xfn/11" />
-	<link rel="shortcut icon" href="<?= imgr(); ?>/daikichi-amano-favicon.ico?crc=294325481"/>
-	<!-- css -->
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-	<link rel="stylesheet" type="text/css" href="<?= cssr(); ?>/site_global.css"/>
+
+	<!--css-->
+	<link href="<?= cssr(); ?>/common.css" rel="stylesheet" type="text/css">
+	<!--js-->
+	<script type="text/javascript" src="<?= jsr(); ?>/jquery.js"></script>
+	<script type="text/javascript" src="<?= jsr(); ?>/common.js"></script>
+
+	<!--bxslider-->
+	<link href="<?= jsr(); ?>/jquery.bxslider.css" rel="stylesheet" type="text/css" />
 	<script src="https://code.jquery.com/jquery-latest.js"></script>
-	<script src="<?= jsr(); ?>/jquery.bxslider.min.js"></script>
-	<?php wp_head(); ?>
+	<script type="text/javascript" src="<?= jsr(); ?>/jquery.bxslider.min.js"></script>
+	<!--local-->
+	<link href="<?= cssr(); ?>/top.css" rel="stylesheet" type="text/css">
+	<script type="text/javascript" src="<?= jsr(); ?>/top.js"></script>
+
+	<?php
+		wp_head();
+		global $post;
+		$slug = $post->post_name;
+	?>
 </head>
 
-<body class="">
+<body id="top" class="<?= get_post_field( 'post_name', get_the_ID() ); ?>">
 
+<!--ヘッダー-->
+<header id="header">
+	<dl>
+		<dt><a href="index.html"><img src="<?= imgr(); ?>/common/h_logo.png" alt=""></a></dt>
+		<dd>
+			<div id="smp_nav_btn"><span></span></div><!--smp_nav_btn-->
+			<nav id="h_menu">
+				<ul>
+					<li><a href="index.html"><span><img src="<?= imgr(); ?>/common/nav_ico1.png" alt="" class="pc"><img src="<?= imgr(); ?>/common/nav2_ico1.png" alt="" class="smp"></span><strong>TOP</strong></a></li>
+					<li><a href="shoplist.html"><span><img src="<?= imgr(); ?>/common/nav_ico2.png" alt="" class="pc"><img src="<?= imgr(); ?>/common/nav2_ico2.png" alt="" class="smp"></span><strong>店舗・チラシ情報</strong></a></li>
+					<li><a href="about.html"><span><img src="<?= imgr(); ?>/common/nav_ico3.png" alt="" class="pc"><img src="<?= imgr(); ?>/common/nav2_ico5.png" alt="" class="smp"></span><strong>富士屋のこだわり</strong></a></li>
+					<li><a href="recruit.html"><span><img src="<?= imgr(); ?>/common/nav_ico4.png" alt="" class="pc"><img src="<?= imgr(); ?>/common/nav2_ico4.png" alt="" class="smp"></span><strong>採用情報</strong></a></li>
+					<li><a href="company.html"><span><img src="<?= imgr(); ?>/common/nav_ico5.png" alt="" class="pc"><img src="<?= imgr(); ?>/common/nav2_ico5.png" alt="" class="smp"></span><strong>会社案内</strong></a></li>
+					<li class="mail"><a href="mailto:xxx@xx.xx"><span><img src="<?= imgr(); ?>/common/nav_ico6.png" alt=""></span><strong>お問い合わせ</strong></a></li>
+					<li class="tel smp"><a href="tel:054-629-4611"><span><img src="<?= imgr(); ?>/common/nav2_ico7.png" alt=""></span><strong>054-629-4611</strong></a></li>
+				</ul>
+			</nav>
+		</dd>
+	</dl>
+</header>
+<!--ヘッダー-->
+
+<!--コンテンツ-->
+<div id="content"> 

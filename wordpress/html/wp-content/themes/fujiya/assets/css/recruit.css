@@ -1,0 +1,94 @@
+@charset "utf-8";
+
+.recruit section{ padding: 60px 0;}
+@media screen and (max-width:767px){
+.recruit section{ padding:10% 0;}
+}
+
+
+/*mv*/
+.recruit #mv{ display: flex; align-items: center; justify-content: center; background: url("../images/recruit/mv_bg.jpg") center center no-repeat; background-size: cover; height: 185px;}
+.recruit #mv h1{ text-align: center; font-size: 32px; color: #fff;}
+@media screen and (max-width:767px){
+.recruit #mv{ height:33.33vw;}
+.recruit #mv h1{ font-size:6vw;}
+}
+
+
+/*tit*/
+.recruit h2{ background: #D1111B; color: #fff; text-align: center; font-size: 32px; padding: 0.5em; border-radius: 12px; margin-bottom: 60px;}
+@media screen and (max-width:767px){
+.recruit h2{ font-size:5vw; border-radius:1.25vw; margin-bottom:5%;}
+}
+
+
+/*nav*/
+.recruit #recruit_nav{ text-align: center; margin: 90px auto 0;}
+.recruit #recruit_nav ul{ display: flex; align-items: center; justify-content: center;}
+.recruit #recruit_nav ul li{ width: 220px; margin: 0 10px;}
+.recruit #recruit_nav ul li a{ display: flex; align-items: center; justify-content: center; width: 100%; height: 60px; border: 2px solid #D1111B; color: #D1111B; font-size: 22px; font-weight: bold; border-radius: 30px; transition: 0.3s;}
+.recruit #recruit_nav ul li a:hover{ background: #D1111B; color: #fff;}
+@media screen and (max-width:767px){
+.recruit #recruit_nav{ margin:10% 2.5% 0;}
+.recruit #recruit_nav ul li{ width:calc(33.33% - 2.5vw); margin:0 1.25vw;}
+.recruit #recruit_nav ul li a{ height:10vw; font-size:3.5vw; border-radius:5vw;}
+}
+
+
+/*rec01*/
+.recruit #recruit01 ul{ margin: 0 100px;}
+.recruit #recruit01 ul li{ padding-left: 36px; font-size: 22px; line-height: 1.25em; margin-bottom: 1em; font-weight: bold; position: relative;}
+.recruit #recruit01 ul li span{ position: absolute; left: 0; top: 2px; line-height: 0;}
+@media screen and (max-width:767px){
+.recruit #recruit01 ul{ margin: 0;}
+.recruit #recruit01 ul li{ padding-left:7.5vw; font-size:4.5vw;}
+.recruit #recruit01 ul li span{ top:0.25vw;}
+.recruit #recruit01 ul li span img{ width:5vw;}
+}
+
+
+/*rec02*/
+.recruit #recruit02 dl{ margin:25px 10px; display: flex; align-items: center; justify-content: center;}
+.recruit #recruit02 dl:last-child{ margin-bottom: 0;}
+.recruit #recruit02 dl dt{ width: 200px; margin: 0 40px 0 0;}
+.recruit #recruit02 dl dt img{ border-radius: 50%;}
+.recruit #recruit02 dl dd{ width: calc(100% - 240px); background: #E8E8E8; padding: 40px; border-radius: 12px; position: relative; z-index: 1;}
+.recruit #recruit02 dl dd:before{ content: ""; width: 40px; height: 40px; background: #E8E8E8; border-radius: 4px; position: absolute; left: -22px; top: 50%; transform: translateY(-50%) rotate(45deg); z-index: -1;}
+.recruit #recruit02 dl dd h3{ font-size: 18px; margin-bottom: 30px;}
+.recruit #recruit02 dl dd h3 span{ display: inline-block; font-size: 14px; margin-left: 1em;}
+.recruit #recruit02 dl dd p{ font-size: 16px;}
+.recruit #recruit02 dl:nth-child(2n){ flex-direction: row-reverse;}
+.recruit #recruit02 dl:nth-child(2n) dt{ margin: 0 0 0 40px;}
+.recruit #recruit02 dl:nth-child(2n) dd:before{ left:auto; right:-22px;}
+@media screen and (max-width:767px){
+.recruit #recruit02 dl{ margin:5% auto; display:block;}
+.recruit #recruit02 dl dt{ width:100%; margin:0 auto 7.5%; padding:0 0 0 2.5vw;}
+.recruit #recruit02 dl dt img{  width:33.33%; border-radius: 50%;}
+.recruit #recruit02 dl dd{ width:100%; padding:5%; border-radius:1.25vw;}
+.recruit #recruit02 dl dd:before{ width:10vw; height:10vw; border-radius:1.25vw; left:11.25vw; top:-3.75vw; transform: translateY(0) rotate(45deg);}
+.recruit #recruit02 dl dd h3{ font-size:3.5vw; margin-bottom:5%;}
+.recruit #recruit02 dl dd h3 span{ font-size:2.5vw;}
+.recruit #recruit02 dl dd p{ font-size:3vw;}
+.recruit #recruit02 dl:nth-child(2n) dt{ margin:0 auto 7.5%; padding:0 2.5vw 0 0; text-align:right;}
+.recruit #recruit02 dl:nth-child(2n) dd:before{ left:auto; right:11.25vw;}
+}
+
+
+/*rec03*/
+.recruit #recruit03 #guide{ border: 1px solid #D1111B; border-radius: 12px; padding: 40px 20px;}
+.recruit #recruit03 #guide table{ width: 100%; border-collapse: collapse; border-spacing: 0;}
+.recruit #recruit03 #guide table tr:nth-child(2n){ background: #FFFAE6;}
+.recruit #recruit03 #guide table th{ width: 210px; padding: 20px 40px; vertical-align: middle; color: #D1111B; font-weight: bold;}
+.recruit #recruit03 #guide table td{ padding: 20px 40px; vertical-align: middle; line-height: 1.5em; font-weight: bold;}
+.recruit #recruit03 #guide h3{ margin: 80px auto 30px; text-align: center; color: #D1111B; font-size: 20px;}
+.recruit #recruit03 #guide figure.ban a{ transition: 0.3s;}
+.recruit #recruit03 #guide figure.ban a:hover{ opacity: 0.7;}
+@media screen and (max-width:767px){
+.recruit #recruit03 #guide{ border-radius:2.5vw; padding:2.5% 2.5% 5%;}
+.recruit #recruit03 #guide table th{ width:100%; display:block; padding:2.5% 2.5% 1.25%; font-size:3vw;}
+.recruit #recruit03 #guide table td{ width:100%; display:block; padding:0 2.5% 2.5%; font-size:2.75vw;}
+
+.recruit #recruit03 #guide h3{ margin:10% auto 5%; font-size:4vw;}
+.recruit #recruit03 #guide figure.ban img{ height:10vw;}
+}
+
