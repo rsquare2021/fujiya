@@ -123,7 +123,7 @@
                 <h2><strong>Shop</strong><span>店舗</span></h2>
                 <ul>
                     <?php foreach (shop_name_lists() as $post) : setup_postdata($post); ?>
-                        <li><a href="#<?= $post->post_name; ?>"><?= title(); ?></a></li>
+                        <li><a href="<?= shoplist(); ?>#<?= $post->post_name; ?>"><?= title(); ?></a></li>
                     <?php endforeach; wp_reset_postdata(); ?>
                 </ul>
             </div><!--maincontent-->
