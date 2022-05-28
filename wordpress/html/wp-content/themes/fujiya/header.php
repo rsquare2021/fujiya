@@ -23,6 +23,13 @@
 		if($filename) {
 			echo '<link href="'.cssr().'/'.$filename.'.css" rel="stylesheet" type="text/css">';
 		}
+		if(is_page('cogca')) {
+			echo '<script type="text/javascript" src="'.jsr().'/cogca.js"></script>';
+		} elseif(is_page('news')) {
+			echo '<script type="text/javascript" src="'.jsr().'/news.js"></script>';
+		} elseif(is_single()) {
+			echo '<link href="'.cssr().'/item.css" rel="stylesheet" type="text/css">';
+		}
 	?>
 	<script type="text/javascript" src="<?= jsr(); ?>/top.js"></script>
 
@@ -33,7 +40,7 @@
 	?>
 </head>
 
-<body id="top" class="<?php if($bodyclass) { echo $bodyclass; } ?>">
+<body id="top" class="<?php if($bodyclass) { echo $bodyclass; } elseif(is_single()) { echo 'item'; } ?>">
 
 <!--ヘッダー-->
 <header id="header">
@@ -58,4 +65,4 @@
 <!--ヘッダー-->
 
 <!--コンテンツ-->
-<div id="content"> 
+<div id="content">

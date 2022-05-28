@@ -98,7 +98,7 @@
             </div><!--maincontent-->
             <div id="home_slide02">
                 <ul>
-                    <?php foreach (bargain_lists() as $post) : setup_postdata($post); ?>
+                    <?php foreach (item_lists() as $post) : setup_postdata($post); ?>
                     <li>
                         <a href="<?php the_permalink(); ?>">
                             <dl>
@@ -133,7 +133,7 @@
             <div class="maincontent">
                 <ul>
                     <?php foreach (banner_lists() as $post) : setup_postdata($post); ?>
-                        <li><a href=""><?= eyecatch(); ?></a></li>
+                        <li><a href="<?php the_field('link'); ?>"><?= eyecatch(); ?></a></li>
                     <?php endforeach; wp_reset_postdata(); ?>
                 </ul>
             </div><!--maincontent-->

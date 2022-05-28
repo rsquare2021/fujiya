@@ -42,6 +42,18 @@ function shoplist() {
 function recruit() {
 	return esc_url( home_url().'/recruit' );
 }
+// コジカポイントカード
+function cogca() {
+	return esc_url( home_url().'/cogca' );
+}
+// おすすめ商品
+function item() {
+	return esc_url( home_url().'/item' );
+}
+// お知らせ一覧
+function news() {
+	return esc_url( home_url().'/news' );
+}
 // 親ページ
 function is_parent_slug() {
     global $post;
@@ -98,12 +110,12 @@ function custom_post_type() {
 			'supports' => array('title','editor','thumbnail','revisions'),
 		)
 	);
-	register_post_type( 'bargain',
+	register_post_type( 'item',
 		array(
 				'labels' => array(
-				'name' => __( 'お買得情報' ),
-				'singular_name' => __( 'お買得情報' ),
-				'add_new' => _x('新規追加', 'お買得情報'),
+				'name' => __( '商品' ),
+				'singular_name' => __( '商品' ),
+				'add_new' => _x('新規追加', '商品'),
 				'add_new_item' => __('新規追加'),
 			),
 			'public' => true,
@@ -177,6 +189,17 @@ function add_taxonomy() {
 			'show_ui' => true,
 		)
 	);
+	register_taxonomy(
+		'item_category',
+		'item',
+		array(
+			'hierarchical' => true,
+			'label' => 'カテゴリー',
+			'singular_label' => 'カテゴリー',
+			'public' => true,
+			'show_ui' => true,
+		)
+	);
 }
 add_action( 'init', 'add_taxonomy' );
 
@@ -207,13 +230,40 @@ function news_lists($cat) {
 }
 
 // お買い得情報
-function bargain_lists() {
+function item_lists() {
 	$args = array(
 		'posts_per_page' => 5,
-		'post_type' => 'bargain',
+		'post_type' => 'item',
 		'orderby' => 'date',
 		'order' => 'DESC',
 	);
+	return get_posts($args);
+}
+
+// おすすめ一覧
+function item_items($cat) {
+	if($cat) {
+		$args = array(
+			'posts_per_page' => -1,
+			'post_type' => 'item',
+			'orderby' => 'date',
+			'order' => 'DESC',
+			'tax_query' => array(
+				array(
+					'taxonomy' => 'item_category',
+					'field' => 'slug',
+					'terms' => $cat,
+				),
+			),
+		);
+	} else {
+		$args = array(
+			'posts_per_page' => -1,
+			'post_type' => 'item',
+			'orderby' => 'date',
+			'order' => 'DESC',
+		);
+	}
 	return get_posts($args);
 }
 
